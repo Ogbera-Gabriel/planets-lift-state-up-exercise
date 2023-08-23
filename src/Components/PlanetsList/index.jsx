@@ -19,10 +19,12 @@ function PlanetList(){
 
     const resetPlanets = () =>{
        setPlanets(planetsData);
+       setDeletedPlanets(0);
     }
 
     const deleteAllPlanets = () =>{
         setPlanets([]);
+        setDeletedPlanets(planetDeleted.length)
     }
 
 
