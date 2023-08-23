@@ -1,11 +1,12 @@
 import {useState} from 'react';
 import planetsData from "../../assets/data/planets.json";
-
+import Summary from '../PlanetSummary';
 import PlanetCard from '../PlanetCard';
 
 function PlanetList(){
     // State Variables
     const [planets, setPlanets] = useState(planetsData);
+    const [planetDeleted, setDeletedPlanets] = useState(0);
     
     // Function Declaration
     const deletePlanet = (planetId) =>{
@@ -13,6 +14,7 @@ function PlanetList(){
             return planet.id !== planetId;
         })
         setPlanets(filteredPlanets);
+        setDeletedPlanets(planetDeleted + 1)
     }
 
     const resetPlanets = () =>{
@@ -29,6 +31,7 @@ function PlanetList(){
             <h2>🪐 Planets List 🪐</h2>
             <button onClick={resetPlanets}>Reset All Planets</button>
             <button onClick={deleteAllPlanets}>Delete All Planets</button>
+            <Summary planetDeleted = {planetDeleted} />
             {planets.map((planet)=>{
                 return(
                    <PlanetCard
